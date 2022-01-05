@@ -1,4 +1,10 @@
--- create a new database called "Test_DB"
+--It’s time to work on our first data project. We all like Soccer so this project belongs to
+--the same, there is a Fifa Dataset which is having many columns and rows, but here
+--we have to work on specific columns for analyzing the Data.
+
+--This project carries some requirements to fulfill.
+
+-- create a new database called "Players_DB"
 CREATE DATABASE Players_DB;
 GO -- seperates out statements that should be in their own files
 
@@ -83,8 +89,8 @@ GO
 
 --6 create a bar plot of top 5 countries and their number of players, try to fill green color in bars.
 SELECT 
-    TOP 5 COUNT(*) Number_of_players 
-FROM 
+    TOP 5 COUNT(*) Number_of_players  
+FROM    
     dbo.players_20
 GROUP BY
     nationality
@@ -92,17 +98,16 @@ ORDER BY
     Number_of_players DESC; 
 GO
 
-
 --7 Show top 5 players short name and wages.
 SELECT 
      TOP 5 wage_eur, short_name
 FROM 
-    dbo.players_20; 
+    dbo.players_20;  
 GO
 
 --8 Show top 5 players short name and wages that are getting highest salaries.SELECT 
 SELECT 
-     TOP 5 wage_eur, value_eur, short_name
+     TOP 5 wage_eur, short_name
 FROM 
     dbo.players_20
 ORDER BY 
@@ -111,7 +116,7 @@ GO
 
 --9 Create a bar plot of point number 8 
 SELECT 
-     TOP 5 wage_eur
+     TOP 5 wage_eur as Player
 FROM 
     dbo.players_20
 ORDER BY 
@@ -130,7 +135,7 @@ GO
 --11 show top 5 records of Germany players who have maximum height, weight and wages
 
 SELECT 
-     TOP 5 height_cm, short_name
+     TOP 5 height_cm, short_name, nationality
 FROM 
     dbo.players_20
 WHERE
@@ -230,4 +235,16 @@ WHERE
     club LIKE  '%Real Madrid%'
 ORDER BY 
     shooting DESC; 
+GO
+
+--Extra show short_name, age, weight, Nationality, club of  player of 'Manchester United'
+
+SELECT 
+   TOP 1 wage_eur, short_name, age, nationality,club
+FROM 
+    dbo.players_20
+WHERE
+    club LIKE  '%Manchester United%' AND  nationality LIKE  '%France%'
+ORDER BY 
+    wage_eur DESC; 
 GO
